@@ -12,7 +12,18 @@
 
 -module(couch_log).
 
--export([debug/2, info/2, notice/2, warning/2, error/2, critical/2, alert/2, emergency/2]).
+-compile([{parse_transform, lager_transform}]).
+
+-export([
+	debug/2,
+	info/2,
+	notice/2,
+	warning/2,
+	error/2,
+	critical/2,
+	alert/2,
+	emergency/2
+]).
 
 debug(Fmt, Args) ->
     catch couch_stats:increment_counter([couch_log, level, debug]),
